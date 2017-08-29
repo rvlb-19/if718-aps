@@ -1,1 +1,1 @@
-# if718-aps
+# Repositório do projeto da disciplina Análise e Projeto de Sistemas.
