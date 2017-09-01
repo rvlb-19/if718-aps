@@ -1,6 +1,6 @@
-## KeruKaffe
+## Descrição
 
-O KeruKaffe é um sistema de gerenciamento de cafeteria. Com ele, usuários terão uma sentirão um toque _smart_ ao degustarem seus pedidos. O atendimento poderá ser feito por meio de **robôs garçons** que contribuem na experiência um tanto moderna para os usuários.
+O KeruKaffe é um sistema de gerenciamento de cafeteria. Com ele, usuários sentirão um toque _smart_ ao degustarem seus pedidos. O atendimento poderá ser feito por meio de **robôs garçons** que contribuem na experiência um tanto moderna para os usuários.
 
 ### Documentos de entrega
 
