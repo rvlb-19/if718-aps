@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout
 
 from accounts.collection import UserCollection
+from menu.collection import MenuCollection
 
 '''
 We use this class to access the model layer and perform database operations
@@ -32,3 +33,15 @@ class Facade:
     @staticmethod
     def user_is_authenticated(request):
         return request.user.is_authenticated()
+
+    @staticmethod
+    def add_menu_item(form):
+        if form.is_valid():
+            MenuCollection.insert(form)
+            return HttpResponseRedirect(reverse_lazy('menu:list'))
+        else:
+            return None
+
+    @staticmethod
+    def get_menu():
+        return MenuCollection.get_menu()

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.forms import RegisterForm
+from menu.forms import MenuItemForm
 
 class FormFactory:
     '''
@@ -12,3 +13,5 @@ class FormFactory:
             return AuthenticationForm(data=data)
         elif form == 'register':
             return RegisterForm(data)
+        elif form == 'menu-add':
+            return MenuItemForm(data)

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # Apps
     'core',
     'accounts',
+    'menu',
     # Libs
     'widget_tweaks',
     'debug_toolbar',

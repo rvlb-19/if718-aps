@@ -2,7 +2,6 @@ from .models import User
 from django.contrib.auth import authenticate
 
 class UserCollection:
-
     @staticmethod
     def verify_user(user):
         return (User.objects.get(id=user.id) is not None)

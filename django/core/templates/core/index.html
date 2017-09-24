@@ -2,9 +2,16 @@
 {% load staticfiles %}
 {% block body_content %}
 <h1>KeruKaffe</h1>
-{% if not user.is_authenticated %}
-Clique <a href="{% url 'accounts:login' %}">aqui</a> para fazer login
-{% else %}
-Olá, {{ user }}! Clique <a href="{% url 'accounts:logout' %}">aqui</a> para fazer logout
-{% endif %}
+<p>
+  {% if not user.is_authenticated %}
+  Clique <a href="{% url 'accounts:login' %}">aqui</a> para fazer login ou <a href="{% url 'accounts:register' %}">aqui</a> para se cadastrar
+  {% else %}
+  Olá, {{ user }}! Clique <a href="{% url 'accounts:logout' %}">aqui</a> para fazer logout
+  {% endif %}
+</p>
+
+<p>
+  Visualizar <a href="{% url 'menu:list' %}">menu</a>
+</p>
+
 {% endblock %}

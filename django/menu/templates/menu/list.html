@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% block body_content %}
+<h1>Menu</h1>
+<ul>
+  {% for item in menu %}
+  <li>{{ item.name }} - R${{ item.price }}</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'menu:add' %}">Adicionar itens</a>
+{% endblock %}

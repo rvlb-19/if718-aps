@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block body_content %}
+<form method="POST">
+    <fieldset>
+        {% csrf_token %}
+        {% for field in form %}
+        {% render_field field placeholder=field.label %}
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </fieldset>
+    {{ form.non_field_errors }}
+</form>
+{% endblock %}
