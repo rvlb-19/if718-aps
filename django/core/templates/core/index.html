@@ -1,5 +1,10 @@
 {% extends 'core/base.html' %}
 {% load staticfiles %}
 {% block body_content %}
-<p>INDEX</p>
+<h1>KeruKaffe</h1>
+{% if not user.is_authenticated %}
+Clique <a href="{% url 'accounts:login' %}">aqui</a> para fazer login
+{% else %}
+Olá, {{ user }}! Clique <a href="{% url 'accounts:logout' %}">aqui</a> para fazer logout
+{% endif %}
 {% endblock %}
