@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load carton_tags %}
+{% get_cart as cart %}
+{% block body_content %}
+<h1>Carrinho</h1>
+<a href="{% url 'core:index' %}">Index</a>
+{% if cart.items %}
+<ul>
+  {% for item in cart.items %}
+  <li>
+    {{ item.product.name }} - {{ item.quantity }} - {{ item.subtotal }} - <a href="{% url 'orders:remove_cart' %}?item_id={{ item.product.id }}">Remover do carrinho</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Carrinho vazio!</p>
+{% endif %}
+{% endblock %}

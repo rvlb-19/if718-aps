@@ -2,10 +2,17 @@
 {% load staticfiles %}
 {% block body_content %}
 <h1>Menu</h1>
+<a href="{% url 'core:index' %}">Index</a>
 <ul>
   {% for item in menu %}
-  <li>{{ item.name }} - R${{ item.price }}</li>
+  <li>
+    {{ item.name }} - R${{ item.price }} - <a href="{% url 'orders:add_cart' %}?item_id={{ item.id }}">Adicionar ao carrinho</a>
+  </li>
   {% endfor %}
 </ul>
 <a href="{% url 'menu:add' %}">Adicionar itens</a>
+
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
 {% endblock %}

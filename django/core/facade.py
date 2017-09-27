@@ -1,5 +1,6 @@
 from accounts.controlador import UserControlador
 from menu.controlador import MenuControlador
+from orders.controlador import OrderControlador
 
 '''
 We use this class to access the model layer and perform database operations
@@ -28,3 +29,7 @@ class Facade:
     @staticmethod
     def get_menu():
         return MenuControlador.get_menu()
+
+    @staticmethod
+    def cart_action(request, action):
+        return OrderControlador.cart_action(request, action)

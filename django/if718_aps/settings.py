@@ -30,9 +30,11 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'menu',
+    'orders',
     # Libs
     'widget_tweaks',
     'debug_toolbar',
+    'carton',
 ]
 
 MIDDLEWARE = [
@@ -95,3 +97,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CART_PRODUCT_MODEL = 'menu.models.MenuItem'

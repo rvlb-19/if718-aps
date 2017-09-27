@@ -6,5 +6,9 @@ class MenuCollection:
         return MenuItem.objects.all()
 
     @staticmethod
+    def get(id):
+        return MenuItem.objects.get(id=id)
+
+    @staticmethod
     def insert(form):
         return form.save()
