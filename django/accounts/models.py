@@ -20,3 +20,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+    def orders(self):
+        return self.order_set.all()

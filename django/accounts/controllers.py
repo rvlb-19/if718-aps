@@ -19,7 +19,7 @@ def signup_controller(request):
     '''
     if request.method == 'POST':
         form = FormFactory.get_instance('register', request.POST)
-        response = Facade.create_user(form)
+        response = Facade.create_user(request, form)
         if response is not None:
             return response
     else:
@@ -49,3 +49,9 @@ def login_controller(request):
 @auth_decorator(lambda x: x, url=reverse_lazy('accounts:login'))
 def logout_controller(request):
     return Facade.log_user_out(request)
+
+@auth_decorator(lambda x: x, url=reverse_lazy('accounts:login'))
+def order_history_controller(request):
+    return render(request, 'accounts/orders.html', {
+        'list': Facade.order_history(request)
+    })

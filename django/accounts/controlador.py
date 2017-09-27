@@ -8,7 +8,7 @@ from .collection import UserCollection
 
 class UserControlador:
     @staticmethod
-    def create_user(form):
+    def create_user(request, form):
         if form.is_valid():
             UserCollection.create_user(form)
             messages.success(request, 'Cadastro realizado com sucesso!')
@@ -32,3 +32,7 @@ class UserControlador:
     @staticmethod
     def user_is_authenticated(request):
         return request.user.is_authenticated()
+
+    @staticmethod
+    def order_history(request):
+        return request.user.orders()

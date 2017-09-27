@@ -9,11 +9,11 @@
 <ul>
   {% for item in cart.items %}
   <li>
-    {{ item.product.name }} - {{ item.quantity }} - {{ item.subtotal }} - <a href="{% url 'orders:remove_cart' %}?item_id={{ item.product.id }}">Remover do carrinho</a>
+    {{ item.product.name }} - {{ item.quantity }} - R${{ item.subtotal }} - <a href="{% url 'orders:remove_cart' %}?item_id={{ item.product.id }}">Remover do carrinho</a>
   </li>
   {% endfor %}
 </ul>
-<a href="{% url 'finalize_order' %}">Finalizar compra</a>
+<a href="{% url 'orders:finalize_order' %}">Finalizar compra</a>
 {% else %}
 <p>Carrinho vazio!</p>
 {% endif %}

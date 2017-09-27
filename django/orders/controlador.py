@@ -4,6 +4,7 @@ from django.contrib import messages
 
 from carton.cart import Cart
 
+from .collection import OrderCollection
 from menu.collection import MenuCollection
 
 class OrderControlador:
@@ -27,6 +28,11 @@ class OrderControlador:
         cart = Cart(request.session)
         if not cart.items:
             return HttpResponseRedirect(reverse_lazy('orders:cart'))
+        # Instantiate a new order for the logged-in user
+        order = OrderCollection.create(request.user)
+        for item in cart.items:
+            # Create a new order item and assign it to the current order
+            OrderCollection.insert_item(order, item.product, item.quantity, item.price)
         cart.clear()
         messages.success(request, 'Pedido realizado com sucesso!')
         return HttpResponseRedirect(reverse_lazy('core:index'))

@@ -7,8 +7,8 @@ We use this class to access the model layer and perform database operations
 '''
 class Facade:
     @staticmethod
-    def create_user(form):
-        return UserControlador.create_user(form)
+    def create_user(request, form):
+        return UserControlador.create_user(request, form)
 
     @staticmethod
     def log_user_in(request, form):
@@ -21,6 +21,10 @@ class Facade:
     @staticmethod
     def user_is_authenticated(request):
         return UserControlador.user_is_authenticated(request)
+
+    @staticmethod
+    def order_history(request):
+        return UserControlador.order_history(request)
 
     @staticmethod
     def add_menu_item(form):
