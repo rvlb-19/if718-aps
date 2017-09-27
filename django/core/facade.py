@@ -33,3 +33,7 @@ class Facade:
     @staticmethod
     def cart_action(request, action):
         return OrderControlador.cart_action(request, action)
+
+    @staticmethod
+    def finalize_order(request):
+        return OrderControlador.finalize_order(request)

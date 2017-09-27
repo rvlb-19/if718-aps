@@ -13,6 +13,7 @@
   </li>
   {% endfor %}
 </ul>
+<a href="{% url 'finalize_order' %}">Finalizar compra</a>
 {% else %}
 <p>Carrinho vazio!</p>
 {% endif %}
