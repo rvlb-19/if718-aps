@@ -20,6 +20,7 @@ class UserControlador:
     def log_user_in(request, form):
         if form.is_valid():
             login(request, form.get_user())
+            messages.success(request, 'Olá, {}! Aproveite a estadia no KeruKaffe.'.format(form.get_user()))
             return HttpResponseRedirect(reverse_lazy('core:index'))
         else:
             return None

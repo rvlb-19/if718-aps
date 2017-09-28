@@ -35,4 +35,4 @@ class OrderControlador:
             OrderCollection.insert_item(order, item.product, item.quantity, item.price)
         cart.clear()
         messages.success(request, 'Pedido realizado com sucesso!')
-        return HttpResponseRedirect(reverse_lazy('core:index'))
+        return HttpResponseRedirect(reverse_lazy('accounts:history'))

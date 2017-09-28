@@ -11,7 +11,7 @@ def menu_controller(request):
 def menu_add_controller(request):
     if request.method == 'POST':
         form = FormFactory.get_instance('menu-add', request.POST)
-        response = Facade.add_menu_item(form)
+        response = Facade.add_menu_item(request, form)
         if response is not None:
             return response
     else:

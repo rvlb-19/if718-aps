@@ -1,19 +1,47 @@
 {% extends 'core/base.html' %}
 {% load staticfiles %}
 {% block body_content %}
-<h1>Histórico de {{ request.user }}</h1>
-<a href="{% url 'core:index' %}">Index</a>
+<p class="is-size-1">
+  Histórico de <span class="has-text-weight-semibold">{{ request.user }}</span>
+</p>
 {% if list %}
-{% for o in list %}
-<h3>Pedido #{{ o.id }} - R${{ o.total }}</h3>
-<ul>
-  {% for i in o.items %}
-  <li>
-    {{ i.item.name }} - R${{ i.price }} x {{ i.qnt }} = R${{ i.subtotal }}
-  </li>
-  {% endfor %}
-</ul>
-{% endfor %}
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    {% for o in list %}
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th colspan="4">Pedido #{{ o.id }}</th>
+        </tr>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in o.items %}
+        <tr>
+          <td>{{ i.item.name }}</td>
+          <td>R${{ i.price }}</td>
+          <td>{{ i.qnt }}</td>
+          <td>R${{ i.subtotal }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td>
+            <span class="has-text-weight-semibold">Total: </span> R${{ o.total }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    {% endfor %}
+  </div>
+</div>
 {% else %}
 <p>Não há histórico para o usuário!</p>
 {% endif %}

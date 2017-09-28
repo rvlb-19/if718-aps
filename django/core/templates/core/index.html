@@ -1,17 +1,13 @@
 {% extends 'core/base.html' %}
 {% load staticfiles %}
 {% block body_content %}
-<h1>KeruKaffe</h1>
-<p>
-  {% if not user.is_authenticated %}
-  Clique <a href="{% url 'accounts:login' %}">aqui</a> para fazer login ou <a href="{% url 'accounts:register' %}">aqui</a> para se cadastrar
-  {% else %}
-  Olá, <a href="{% url 'accounts:history' %}">{{ user }}</a>! Clique <a href="{% url 'accounts:logout' %}">aqui</a> para fazer logout
-  {% endif %}
-</p>
-
-<p>
-  Visualizar <a href="{% url 'menu:list' %}">menu</a>
-</p>
-
+<div>
+  <p class="is-size-1">Bem-vindo ao <span class="has-text-weight-semibold">KeruKaffe</span>!</p>
+  <p>Projeto desenvolvido durante a cadeira Análise e Projeto de Sistemas 2017.2</p>
+  <p class="is-size-2">Equipe</p>
+  <p>Hoi Yan (hym)</p>
+  <p>Pedro Henrique Rodrigues (phrps)</p>
+  <p>Renato Vieira (rvlb)</p>
+  <p>Vitor Castelo Branco (vtcb)</p>
+</div>
 {% endblock %}

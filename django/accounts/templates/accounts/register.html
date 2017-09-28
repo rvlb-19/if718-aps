@@ -2,16 +2,27 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block body_content %}
-<h1>Register</h1>
-<a href="{% url 'core:index' %}">Index</a>
-<form method="POST">
-    <fieldset>
-        {% csrf_token %}
-        {% for field in form %}
-        {% render_field field placeholder=field.label %}
-        {% endfor %}
-        <button type="submit">Submit</button>
-    </fieldset>
-    {{ form.non_field_errors }}
-</form>
+<p class="is-size-1">Cadastro</p>
+<div class="columns">
+  <form method="POST" class="column is-one-third is-offset-one-third">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="field">
+      <div class="control">
+        {% render_field field class="input" placeholder=field.label %}
+      </div>
+    </div>
+    {% endfor %}
+    <div class="field">
+      <div class="control">
+        <button class="button is-primary is-fullwidth" type="submit">Cadastrar</button>
+      </div>
+    </div>
+    {% for error in form.non_field_errors %}
+    <div class="notification is-danger">
+      {{ error }}
+    </div>
+    {% endfor %}
+  </form>
+</div>
 {% endblock %}

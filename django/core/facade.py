@@ -27,8 +27,8 @@ class Facade:
         return UserControlador.order_history(request)
 
     @staticmethod
-    def add_menu_item(form):
-        return MenuControlador.add_menu_item(form)
+    def add_menu_item(request, form):
+        return MenuControlador.add_menu_item(request, form)
 
     @staticmethod
     def get_menu():
