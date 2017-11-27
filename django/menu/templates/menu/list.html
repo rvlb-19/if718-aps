@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% block body_content %}
+<p class="is-size-1">Menu</p>
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Preço</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in menu %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>R${{ item.price }}</td>
+          <td>
+            <a href="{% url 'orders:add_cart' %}?item_id={{ item.id }}">
+              Adicionar ao carrinho
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<a href="{% url 'menu:add' %}">Adicionar itens ao menu</a>
+{% endblock %}

@@ -4,5 +4,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^', include('core.urls', namespace='core')),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^menu/', include('menu.urls', namespace='menu')),
+    url(r'^orders/', include('orders.urls', namespace='orders')),
     url(r'^admin/', admin.site.urls),
 ]

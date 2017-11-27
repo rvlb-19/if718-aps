@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load carton_tags %}
+{% get_cart as cart %}
+{% block body_content %}
+<p class="is-size-1">Carrinho</p>
+{% if cart.items %}
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Quantidade</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>R${{ item.subtotal }}</td>
+          <td>
+            <a href="{% url 'orders:remove_cart' %}?item_id={{ item.product.id }}">
+              Remover do carrinho
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td>
+            <span class="has-text-weight-semibold">Total: </span> R${{ cart.total }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<a href="{% url 'orders:finalize_order' %}">Finalizar compra</a>
+{% else %}
+<p>Carrinho vazio!</p>
+{% endif %}
+{% endblock %}

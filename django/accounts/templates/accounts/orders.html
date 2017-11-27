@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% block body_content %}
+<p class="is-size-1">
+  Histórico de <span class="has-text-weight-semibold">{{ request.user }}</span>
+</p>
+{% if list %}
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    {% for o in list %}
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th colspan="4">Pedido #{{ o.id }}</th>
+        </tr>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in o.items %}
+        <tr>
+          <td>{{ i.item.name }}</td>
+          <td>R${{ i.price }}</td>
+          <td>{{ i.qnt }}</td>
+          <td>R${{ i.subtotal }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td>
+            <span class="has-text-weight-semibold">Total: </span> R${{ o.total }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<p>Não há histórico para o usuário!</p>
+{% endif %}
+{% endblock %}
