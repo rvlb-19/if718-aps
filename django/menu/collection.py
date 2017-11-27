@@ -1,14 +1,16 @@
 from .models import MenuItem
 
+from core.collection import Collection
+
 class MenuCollection:
     @staticmethod
     def get_menu():
-        return MenuItem.objects.all()
+        return Collection(MenuItem).all()
 
     @staticmethod
     def get(id):
-        return MenuItem.objects.get(id=id)
+        return Collection(MenuItem).get(id)
 
     @staticmethod
     def insert(form):
-        return form.save()
+        return Collection(MenuItem).insert(form)

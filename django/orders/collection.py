@@ -1,21 +1,21 @@
 from .models import Order, OrderItem
+from core.collection import Collection
 
 class OrderCollection:
     @staticmethod
     def create(user):
-        order = Order(user=user)
-        order.save()
-        return order
+        c = Collection(Order)
+        return c.insert({ 'user': user })
 
     @staticmethod
     def insert_item(order, item, qnt, price):
-        item = OrderItem(order=order, item=item, qnt=qnt, price=price)
-        item.save()
+        c = Collection(OrderItem)
+        c.insert({ 'order': order, 'item': item, 'qnt': qnt, 'price': price })
 
     @staticmethod
     def get(id):
-        return Order.objects.get(id=id)
+        return Collection(Order).get(id)
 
     @staticmethod
     def get_order_items(id):
-        return OrderCollection.get(i).items()
+        return OrderCollection.get(id).items()
