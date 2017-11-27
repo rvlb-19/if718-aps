@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 
 from .collection import UserCollection
+from .decorators import auth_decorator
 
 class UserControlador:
     @staticmethod
@@ -26,6 +27,7 @@ class UserControlador:
             return None
 
     @staticmethod
+    @auth_decorator(lambda x: x, url=reverse_lazy('accounts:login'))
     def log_user_out(request):
         logout(request)
         return HttpResponseRedirect(reverse_lazy('core:index'))

@@ -7,8 +7,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from .decorators import auth_decorator
-
 def signup_controller(request):
     '''
     1. If we are accessing the view using POST, it means we are sending
@@ -29,7 +27,6 @@ def signup_controller(request):
     }
     return render(request, 'accounts/register.html', context)
 
-@auth_decorator(lambda x: not x, url=reverse_lazy('core:index'))
 def login_controller(request):
     if Facade.user_is_authenticated(request):
         return HttpResponseRedirect(reverse_lazy('core:index'))
@@ -46,12 +43,13 @@ def login_controller(request):
     }
     return render(request, 'accounts/login.html', context)
 
-@auth_decorator(lambda x: x, url=reverse_lazy('accounts:login'))
 def logout_controller(request):
     return Facade.log_user_out(request)
 
-@auth_decorator(lambda x: x, url=reverse_lazy('accounts:login'))
 def order_history_controller(request):
+    if not Facade.user_is_authenticated(request):
+        return HttpResponseRedirect(reverse_lazy('core:index'))
+
     return render(request, 'accounts/orders.html', {
         'list': Facade.order_history(request)
     })
