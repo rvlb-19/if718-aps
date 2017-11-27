@@ -4,6 +4,7 @@ from menu.models import MenuItem
 class Collection:
     def __init__(self, cls):
         self.cls = cls
+        self.objects = self.cls.objects
 
     def insert(self, obj):
         if self.cls in [User, MenuItem]:
@@ -11,10 +12,11 @@ class Collection:
         else:
             new = self.cls(**obj)
         new.save()
+        self.objects = self.cls.objects
         return new
 
     def get(self, id):
-        return self.cls.objects.get(id=id)
+        return self.objects.get(id=id)
 
     def all(self):
-        return self.cls.objects.all()
+        return self.objects.all()
